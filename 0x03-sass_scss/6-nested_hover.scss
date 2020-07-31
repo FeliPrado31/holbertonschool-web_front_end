@@ -1,0 +1,10 @@
+/**/
+$happy: #ff0000;
+$punpun: #00ff00;
+
+button {
+  color: $happy;
+  &:hover {
+    color: $punpun;
+  }
+}
