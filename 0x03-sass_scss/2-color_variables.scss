@@ -1,0 +1,17 @@
+/* Write a Sass file that assigns: */
+
+$happy: #3d3d3d;
+$punpun: #6d6d6d;
+
+body {
+  color: $happy;
+  background-color: $punpun;
+}
+
+p {
+  color: $happy;
+}
+
+h2 {
+  background-color: $punpun;
+}
