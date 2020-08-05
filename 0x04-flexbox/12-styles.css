@@ -736,6 +736,9 @@ ul.row {
   z-index: 2;
 }
 
+.main-article {
+  padding: 5rem 0;
+}
 
 /* Post
     ============================= */
