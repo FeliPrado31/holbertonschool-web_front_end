@@ -366,7 +366,6 @@ a:active {
 /* Helpers
       ============================= */
 
-
 .visually-hidden:not(:focus):not(:active) {
   position: absolute !important;
   height: 1px;
@@ -783,6 +782,10 @@ ul.row {
 .article-page .section-hero {
   margin-top: -8.5rem;
   padding-top: 5rem;
+}
+
+.article-page .header {
+  background-color: transparent;
 }
 
 @media only screen and (max-width: 767px) {
