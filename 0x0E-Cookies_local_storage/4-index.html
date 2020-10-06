@@ -1,57 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>index</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 </head>
-
 <body>
   <div id="form">
     <h2>Login to the website</h2>
     <input type="text" id="firstname" placeholder="Firstname">
     <input type="text" id="email" placeholder="Email">
-    <button onclick="setCookies()">Log me in</button>
+    <button onclick="setCookiesAndShowWelcomeMessage()">Log me in</button>
   </div>
 
   <script type="application/javascript">
-    function setCookies() {
-      let cookie1 = "firstname=" + document.getElementById("firstname").value;
-      let cookie2 = "email=" + document.getElementById("email").value;
-      let date = new Date();
+    function setCookiesAndShowWelcomeMessage() {
+      let firstName = document.getElementById("firstname").value;
+      let email = document.getElementById("email").value;
 
-      date.setDate(date.getDate() + 10);
-      cookie1 += "; expires=" + date.toUTCString() + "; path=/";
-      cookie2 += "; expires=" + date.toUTCString() + "; path=/"
-
-      document.cookie = cookie1;
-      document.cookie = cookie2;
+      Cookies.set("firstname", firstName,{expires: 10, path: "/"});
+      Cookies.set("email", email,{expires: 10, path: "/"});
 
       showWelcomeMessageOrForm();
     }
 
     function showCookies() {
-      let cookies = document.cookie.split(";");
+      let cookies =  document.cookie.split(";");
       let p = document.createElement("p");
-      let txt = document.createTextNode("Email: " + getCookie("email") + " - Firstname: " + getCookie("firstname"));
+      let txt = document.createTextNode("Email: " + Cookies.get("email") + " - Firstname: " + Cookies.get("firstname"));
 
       p.appendChild(txt);
       document.body.appendChild(p);
-    }
-
-    const getCookie = name => {
-      let cookies = document.cookie.split(";")
-
-      for (let i = 0; i < cookies.length; i++) {
-        let key_val = cookies[i].split("=");
-
-        if (key_val[0].trim().localeCompare(name) === 0) {
-          return key_val[1];
-        }
-      }
-
-      return "";
     }
 
     function showForm() {
@@ -65,25 +45,17 @@
     }
 
     function deleteCookiesAndShowForm() {
-      let cookie1 = "firstname="
-      let cookie2 = "email="
-      let date = new Date();
-
-      date.setDate(date.getDate() + 10);
-      cookie1 += "; expires=" + date.toUTCString() + "; path=/";
-      cookie2 += "; expires=" + date.toUTCString() + "; path=/";
-
-      document.cookie = cookie1;
-      document.cookie = cookie2;
+      Cookies.remove("firstname")
+      Cookies.remove("email")
 
       showForm();
     }
 
     function showWelcomeMessageOrForm() {
-      if (getCookie("firstname").localeCompare("") === 0) {
+      if (Cookies.get("firstname").localeCompare("") === 0) {
         showForm();
       } else {
-        let firstname = getCookie("firstname");
+        let firstname = Cookies.get("firstname");
         let h1 = document.createElement("h1");
         let a = document.createElement("a");
 
@@ -102,5 +74,4 @@
     }
   </script>
 </body>
-
 </html>
